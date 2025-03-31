@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { NavigationComponent } from './core/components/navigation/navigation.component';
+import { BroadcastSyncService } from './core/services/broadcast-sync.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, NavigationComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'LJBTodo';
+  broadcastSyncService = inject(BroadcastSyncService);
 }

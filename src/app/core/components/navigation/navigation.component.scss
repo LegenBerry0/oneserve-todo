@@ -1,0 +1,21 @@
+.container {
+  mat-toolbar {
+    height: var(--toolbar-height);
+  }
+
+  .sidenav {
+    padding: 8px;
+  }
+}
+
+.drawer-container {
+  height: calc(100vh - var(--toolbar-height));
+  gap: 8px;
+}
+
+.add-new-task {
+  background-color: var(--oneserve-bg-color);
+  span {
+    color: white;
+  }
+}

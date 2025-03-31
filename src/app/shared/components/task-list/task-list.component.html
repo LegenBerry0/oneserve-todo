@@ -1,0 +1,35 @@
+<mat-accordion
+  cdkDropList
+  (cdkDropListDropped)="drop($event)"
+  ondrag="dragablePanel.close()"
+>
+  @for (todo of todos(); track todo.id) {
+  <mat-expansion-panel
+    cdkDrag
+    [expanded]="panelOpenState()[todo.id]"
+    [cdkDragDisabled]="!panelOpenState"
+    (opened)="openStateChanged(todo.id, true)"
+    (closed)="openStateChanged(todo.id, false)"
+  >
+    <mat-expansion-panel-header cdkDragHandle>
+      <mat-panel-title> {{ todo.title }} </mat-panel-title>
+      <mat-panel-description>
+        {{ todo.completed ? "Done" : "Not Done" }}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>{{ todo.description }}</p>
+    <div class="actions">
+      <mat-checkbox (change)="setCompletion(todo)" [value]="todo.completed"
+        >Completed</mat-checkbox
+      >
+      <button mat-mini-fab (click)="editTodo(todo)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-mini-fab (click)="deleteTodo(todo.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </mat-expansion-panel>
+
+  }
+</mat-accordion>

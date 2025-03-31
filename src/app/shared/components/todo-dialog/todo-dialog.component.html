@@ -1,0 +1,39 @@
+<h2 mat-dialog-title>{{ isEdit() ? "Edit " : "Add New " }}To Do</h2>
+<mat-dialog-content>
+  <form [formGroup]="todoForm">
+    <div class="form-container">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Title</mat-label>
+        <input
+          matInput
+          placeholder="Enter todo title"
+          formControlName="title"
+        />
+        @if(todoForm.get('title')?.hasError('required')){
+        <mat-error> Title is required </mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Description</mat-label>
+        <textarea
+          matInput
+          placeholder="Enter description"
+          formControlName="description"
+        ></textarea>
+      </mat-form-field>
+      <mat-checkbox formControlName="completed">Completed</mat-checkbox>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button
+    mat-button
+    [mat-dialog-close]="todoForm.value"
+    [disabled]="!todoForm.valid"
+    cdkFocusInitial
+    (click)="onSubmit()"
+  >
+    {{ isEdit() ? "Save" : "Add To Do" }}
+  </button>
+</mat-dialog-actions>
