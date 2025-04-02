@@ -19,7 +19,7 @@
     </mat-expansion-panel-header>
     <p>{{ todo.description }}</p>
     <div class="actions">
-      <mat-checkbox (change)="setCompletion(todo)" [value]="todo.completed"
+      <mat-checkbox (change)="setCompletion(todo)" [checked]="todo.completed"
         >Completed</mat-checkbox
       >
       <button mat-mini-fab (click)="editTodo(todo)">
